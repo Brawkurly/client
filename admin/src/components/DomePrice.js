@@ -42,7 +42,7 @@ const Box = styled.div`
     grid-row: 30px;
     grid-auto-flow: row;
     grid-auto-rows: 30px;
-
+    grid-gap: 1px;
     background-color: #fafafa;
     overflow-y: scroll;
     .grid_row {
@@ -51,7 +51,10 @@ const Box = styled.div`
       grid-template-columns: 4fr 1.5fr 2fr 2fr 2fr 2fr 2fr;
       grid-template-rows: 30px;
       background-color: white;
-      span {
+
+      .col {
+        font-size: 13px;
+
         padding-left: 20px;
         text-align: left;
       }
@@ -81,6 +84,17 @@ const dump = [
   {
     type: 1,
     name: "쌀",
+    dan: "1kg",
+    price: 10,
+    priceRate: "10%",
+    beforeOneDay: 10,
+    beforeOneMonth: 20,
+    beforeOneYear: 30,
+  },
+  {
+    type: 1,
+    name: "쌀",
+    dan: "1kg",
     price: 10,
     priceRate: "10%",
     beforeOneDay: 10,
@@ -123,13 +137,13 @@ function DomePrice() {
               if (data.type === 1) {
                 return (
                   <div className="grid_row" key={idx}>
-                    <span>{data.name}</span>
-                    <span>{data.dan}</span>
-                    <span>{data.price}</span>
-                    <span>{data.priceRate}</span>
-                    <span>{data.beforeOneDay}</span>
-                    <span>{data.beforeOneMonth}</span>
-                    <span>{data.beforeOneYear}</span>
+                    <div className="col">{data.name}</div>
+                    <div className="col">{data.dan}</div>
+                    <div className="col">{data.price}</div>
+                    <div className="col">{data.priceRate}</div>
+                    <div className="col">{data.beforeOneDay}</div>
+                    <div className="col">{data.beforeOneMonth}</div>
+                    <div className="col">{data.beforeOneYear}</div>
                   </div>
                 );
               }
