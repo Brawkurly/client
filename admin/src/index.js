@@ -10,7 +10,10 @@ import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  box-sizing: border-box;
+  * {
+
+    box-sizing: border-box;
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

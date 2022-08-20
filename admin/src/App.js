@@ -7,7 +7,7 @@ import DomePrice from "./components/DomePrice";
 function App() {
   return (
     <Wrapper>
-      <Title>
+      <Title height={"40px"}>
         적정가격
         <span> 모니터링 </span>
         대시보드

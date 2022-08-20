@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 100vw;
   height: 100vh;
 
@@ -16,7 +15,7 @@ const Wrapper = styled.div`
     grid-gap: 10px 10px;
 
     height: 98vh;
-    padding: 20px;
+    padding: 10px 20px;
 
     background-color: ${(props) => props.theme.MidBlue};
 

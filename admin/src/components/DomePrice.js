@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { kamis, KAMIS_URL, API_KEY } from "../api/drf";
@@ -23,9 +24,18 @@ const Box = styled.div`
   }
 
   li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     color: #0e5a56;
-    text-align: center;
     flex: 1;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    :hover {
+      background-color: #0e5a56;
+      color: white;
+    }
   }
 
   .grid_head {
@@ -53,12 +63,16 @@ const Box = styled.div`
       background-color: white;
 
       .col {
+        display: flex;
+        align-items: center;
         font-size: 13px;
-
         padding-left: 20px;
-        text-align: left;
       }
     }
+  }
+  .active {
+    background-color: #0e5a56;
+    color: white;
   }
 `;
 
@@ -101,9 +115,23 @@ const dump = [
     beforeOneMonth: 20,
     beforeOneYear: 30,
   },
+  {
+    type: 2,
+    name: "쌀",
+    dan: "1kg",
+    price: 10,
+    priceRate: "10%",
+    beforeOneDay: 10,
+    beforeOneMonth: 20,
+    beforeOneYear: 30,
+  },
 ];
 
 function DomePrice() {
+  const [type, setType] = useState(1);
+  const changeType = (event) => {
+    setType(Number(event.target.id));
+  };
   // axios
   //   .get(
   //     "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_country_code=1101&p_regday=2015-10-01&p_convert_kg_yn=N&p_item_category_code=200&p_cert_key=111&p_cert_id=222&p_returntype=json"
@@ -117,11 +145,41 @@ function DomePrice() {
       <div className="content">
         <Box>
           <ul>
-            <li>식량작물</li>
-            <li>채소류</li>
-            <li>특용작물</li>
-            <li>과일류</li>
-            <li>수산물</li>
+            <li
+              id="1"
+              onClick={changeType}
+              className={type === 1 ? "active" : null}
+            >
+              식량작물
+            </li>
+            <li
+              id="2"
+              onClick={changeType}
+              className={type === 2 ? "active" : null}
+            >
+              채소류
+            </li>
+            <li
+              id="3"
+              onClick={changeType}
+              className={type === 3 ? "active" : null}
+            >
+              특용작물
+            </li>
+            <li
+              id="4"
+              onClick={changeType}
+              className={type === 4 ? "active" : null}
+            >
+              과일류
+            </li>
+            <li
+              id="5"
+              onClick={changeType}
+              className={type === 5 ? "active" : null}
+            >
+              수산물
+            </li>
           </ul>
           <div className="grid_head">
             <span>품목</span>
@@ -134,7 +192,7 @@ function DomePrice() {
           </div>
           <div className="grid_body">
             {dump.map((data, idx) => {
-              if (data.type === 1) {
+              if (data.type === type) {
                 return (
                   <div className="grid_row" key={idx}>
                     <div className="col">{data.name}</div>
