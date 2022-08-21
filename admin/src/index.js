@@ -10,7 +10,15 @@ import theme from "./theme";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  box-sizing: border-box;
+  * {
+    font-family: "Pretendard-Regular";
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-family : "Pretendard-Regular"
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
