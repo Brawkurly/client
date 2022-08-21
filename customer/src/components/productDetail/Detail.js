@@ -66,6 +66,7 @@ function Detail() {
             <div className={styles.total_info}>
               <span className={styles.total}>즉시 구매금액</span>
               <span className={styles.total_price}>
+                {"  "}
                 {product.price}
                 <span className={styles.total_unit1}>원</span>
               </span>
@@ -74,7 +75,7 @@ function Detail() {
             <div className={styles.total_info}>
               <span className={styles.total}>예약 상품금액</span>
               <span className={styles.total_price}>
-                16,800
+                {"  "}16,800
                 <span className={styles.total_unit2}>원</span>
               </span>
             </div>
@@ -86,6 +87,13 @@ function Detail() {
           </div>
         </section>
       </main>
+
+      <section className={styles.detail}>
+        <img
+          src={"/images/productDetail/" + list[product.productId - 1] + ".png"}
+          alt="product"
+        />
+      </section>
     </>
   );
 }
