@@ -17,7 +17,7 @@ function Navigation() {
       </div>
 
       <div className={styles.menu}>
-        <Link to="/cart">
+        <Link to="">
           <div className={styles.shopping_cart}>
             <img src="/images/icon-shopping-cart.svg" alt="cart" />
             <span>장바구니</span>
