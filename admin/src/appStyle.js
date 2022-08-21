@@ -10,7 +10,10 @@ const Wrapper = styled.div`
 
   .grid {
     display: grid;
-    grid-template-columns: 2fr 2.5fr 2fr;
+    grid-template-columns: minmax(500px, 2fr) minmax(700px, 2.5fr) minmax(
+        500px,
+        2fr
+      );
     grid-template-rows: repeat(12, 1fr);
     grid-gap: 10px 10px;
 
@@ -34,15 +37,12 @@ const Wrapper = styled.div`
     }
     .pair_value {
       grid-area: 1 / 2 / 6 / 3;
-      background-color: azure;
     }
     .pair_value {
       grid-area: 1 / 2 / 6 / 3;
-      background-color: azure;
     }
     .value_var {
       grid-area: 6 / 2 / 13 / 3;
-      background-color: darkcyan;
     }
     .dome_price {
       grid-area: 1 / 3 / 5 / 4;

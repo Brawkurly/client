@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { kamis, KAMIS_URL, API_KEY } from "../api/drf";
@@ -76,23 +76,7 @@ const Box = styled.div`
   }
 `;
 
-const datas = [];
-for (let x = 1; x < 2; x++) {
-  axios
-    .get(kamis.dome(), {
-      params: {
-        p_cert_key: API_KEY,
-        p_cert_id: "heo3793",
-        // p_country_code: "default",
-        p_returntype: "json",
-        p_item_category_code: x * 100,
-        // p_product_cls_code: "default",
-        p_regday: "2022-06-01",
-        p_convert_kg_yn: "N",
-      },
-    })
-    .then((res) => console.log(res));
-}
+const date = new Date();
 
 const dump = [
   {
@@ -129,16 +113,52 @@ const dump = [
 
 function DomePrice() {
   const [type, setType] = useState(1);
+  const datas = [];
+  const today = () => {
+    const nowDay = date.getDay();
+    const yy = date.getFullYear();
+    const mm = date.getMonth() + 1;
+    const dd = date.getDate();
+
+    return yy.toString() + mm.toString().padStart(2, "0") + dd.toString();
+  };
+
   const changeType = (event) => {
     setType(Number(event.target.id));
   };
-  // axios
-  //   .get(
-  //     "http://www.kamis.or.kr/service/price/xml.do?action=dailyPriceByCategoryList&p_product_cls_code=02&p_country_code=1101&p_regday=2015-10-01&p_convert_kg_yn=N&p_item_category_code=200&p_cert_key=111&p_cert_id=222&p_returntype=json"
-  //   )
-  //   .then((res) => {
-  //     console.log(res);
-  //   });
+
+  useEffect(() => {
+    const now = today();
+    let y = 0;
+    for (let x = 1; x < 2; x++) {
+      let state = "";
+      let temp = [];
+      for (let z = 0; z < 3; z++) {
+        axios
+          .get(kamis.dome(), {
+            params: {
+              p_cert_key: API_KEY,
+              p_cert_id: "heo3793",
+              p_country_code: 1101,
+              p_returntype: "json",
+              p_item_category_code: x * 100,
+              p_product_cls_code: "02",
+              p_regday: now - 2,
+              p_convert_kg_yn: "N",
+            },
+          })
+          .then(({ data }) => {
+            state = data.data.error_code;
+            temp = data.data.item;
+          });
+        if (state === "000") {
+          console.log(temp);
+          break;
+        } else y++;
+      }
+    }
+  }, []);
+
   return (
     <FlexBox>
       <h1>상품별 도매가</h1>

@@ -11,8 +11,13 @@ import theme from "./theme";
 const GlobalStyle = createGlobalStyle`
   ${reset}
   * {
-
+    font-family: "Pretendard-Regular";
     box-sizing: border-box;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-family : "Pretendard-Regular"
   }
 `;
 
