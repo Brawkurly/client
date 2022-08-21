@@ -83,18 +83,14 @@ function PairValue({}) {
           <div className="box">
             <span className="title">현재가</span>
             <div className="priceWrap">
-              <span className="price">
-                {data.currentPrice.toLocaleString("ko-KR")}
-              </span>
+              <span className="price">{data?.currentPrice}</span>
               <span className="dan">원</span>
             </div>
           </div>
           <div className="box">
             <span className="title">공급자가</span>
             <div className="priceWrap">
-              <span className="price">
-                {data.supplyPrice.toLocaleString("ko-KR")}
-              </span>
+              <span className="price">{data?.supplyPrice}</span>
               <span className="dan">원</span>
             </div>
           </div>
@@ -109,7 +105,7 @@ function PairValue({}) {
               <h1>{data.productName}</h1>
               <p>
                 적정가&nbsp;&nbsp;&nbsp;&nbsp;
-                {data.fairPrice.toLocaleString("ko-KR")}원
+                {data?.fairPrice}원
               </p>
             </div>
           </div>
