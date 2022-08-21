@@ -2,20 +2,20 @@ import { useRecoilValue } from "recoil";
 import { Data } from "../atoms";
 import ApexChart from "react-apexcharts";
 
-function LineChart() {
-  const { changePrice } = useRecoilValue(Data);
+function BarChart() {
+  const { consumerReserveCnt } = useRecoilValue(Data);
 
   return (
     <>
-      {!changePrice ? (
+      {!consumerReserveCnt ? (
         "nowLoading"
       ) : (
         <ApexChart
-          type="line"
+          type="bar"
           series={[
             {
-              name: "Price",
-              data: changePrice?.map((item) => item?.price),
+              name: "Count",
+              data: consumerReserveCnt?.map((item) => item?.cnt),
             },
           ]}
           options={{
@@ -23,25 +23,23 @@ function LineChart() {
               mode: "dark",
             },
             chart: {
-              height: 500,
-              width: 500,
+              height: 200,
+              width: 200,
               toolbar: {
                 show: false,
               },
               background: "transparent",
             },
-            grid: { show: true },
             stroke: {
               curve: "smooth",
-              width: 10,
+              width: 1,
             },
-            yaxis: { show: true },
             xaxis: {
               axisBorder: { show: false },
               labels: { show: true },
               axisTicks: { show: false },
-              categories: changePrice?.map((price) => price?.createAt),
-              type: "datetime",
+              categories: consumerReserveCnt?.map((price) => price?.price),
+              type: "number",
             },
             colors: ["#6650d3"],
             fill: {
@@ -49,8 +47,13 @@ function LineChart() {
               gradient: { gradientToColors: ["#6c7592"], stops: [0, 100] },
             },
             tooltip: {
-              // y: { formatter: (value) => `$ ${value.toFixed(3)}` },
               theme: "dark",
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                horizontal: true,
+              },
             },
           }}
         />
@@ -59,4 +62,4 @@ function LineChart() {
   );
 }
 
-export default LineChart;
+export default BarChart;

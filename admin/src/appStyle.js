@@ -4,7 +4,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
 
   background-color: ${(props) => props.theme.DarkBlue};
 
@@ -17,26 +16,21 @@ const Wrapper = styled.div`
     grid-template-rows: repeat(12, 1fr);
     grid-gap: 10px 10px;
 
-    height: 98vh;
+    height: calc(100vh - 60px);
     padding: 10px 20px;
 
     background-color: ${(props) => props.theme.MidBlue};
 
     .today_sell {
       grid-area: 1 / 1 / 4 / 2;
-      background-color: red;
     }
 
-    .live_conversation {
-      grid-area: 4 / 1 / 7 / 2;
-      background-color: tomato;
+    .live_reservation {
+      grid-area: 4 / 1 / 10 / 2;
     }
     .live_hot {
-      grid-area: 7 / 1 / 13 / 2;
+      grid-area: 10 / 1 / 13 / 2;
       background-color: yellow;
-    }
-    .pair_value {
-      grid-area: 1 / 2 / 6 / 3;
     }
     .pair_value {
       grid-area: 1 / 2 / 6 / 3;

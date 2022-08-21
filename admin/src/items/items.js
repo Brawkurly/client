@@ -6,7 +6,8 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: ${(props) => props.height || "30px"};
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: ${(props) => props.theme.White};
   font-size: ${(props) => props.theme.MediumFont};
 
@@ -25,7 +26,7 @@ export const FlexBox = styled.div`
     font-weight: 700;
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 60px !important;
     color: ${(props) => props.theme.White};
     font-size: ${(props) => props.theme.MediumFont};
   }
