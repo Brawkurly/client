@@ -1,20 +1,37 @@
+import { useLocation } from "react-router-dom";
 import styles from "./Detail.module.css";
 
 function Detail() {
+  const location = useLocation();
+  const product = location.state;
+  const list = [
+    "감귤1",
+    "감귤2",
+    "고구마1",
+    "고구마2",
+    "쌀1",
+    "쌀2",
+    "김치1",
+    "김치2",
+  ];
+
   return (
     <>
       <main className={styles.main}>
         <section className={styles.product}>
           <div className={styles.product_img}>
-            <img src="/images/product/감귤1.png" alt="product" />
+            <img
+              src={"/images/product/" + list[product.productId - 1] + ".png"}
+              alt="product"
+            />
           </div>
         </section>
         <section className={styles.product}>
           <div className={styles.product_info}>
-            <p className={styles.seller_store}>사과</p>
-            <p className={styles.product_name}>당도선별 서귀포 감귤 1.5kg</p>
+            <p className={styles.seller_store}>{product.product}</p>
+            <p className={styles.product_name}>{product.name}</p>
             <span className={styles.price}>
-              16,800
+              {product.price}
               <span className={styles.unit}>원</span>
             </span>
           </div>
@@ -49,7 +66,8 @@ function Detail() {
             <div className={styles.total_info}>
               <span className={styles.total}>즉시 구매금액</span>
               <span className={styles.total_price}>
-                16,800
+                {"  "}
+                {product.price}
                 <span className={styles.total_unit1}>원</span>
               </span>
             </div>
@@ -57,7 +75,7 @@ function Detail() {
             <div className={styles.total_info}>
               <span className={styles.total}>예약 상품금액</span>
               <span className={styles.total_price}>
-                16,800
+                {"  "}16,800
                 <span className={styles.total_unit2}>원</span>
               </span>
             </div>
@@ -69,6 +87,13 @@ function Detail() {
           </div>
         </section>
       </main>
+
+      <section className={styles.detail}>
+        <img
+          src={"/images/productDetail/" + list[product.productId - 1] + ".png"}
+          alt="product"
+        />
+      </section>
     </>
   );
 }
