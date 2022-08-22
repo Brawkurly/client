@@ -30,7 +30,6 @@ const Wrapper = styled.div`
     }
     .live_hot {
       grid-area: 10 / 1 / 13 / 2;
-      background-color: yellow;
     }
     .pair_value {
       grid-area: 1 / 2 / 6 / 3;
@@ -43,7 +42,6 @@ const Wrapper = styled.div`
     }
     .compet_price {
       grid-area: 5 / 3 / 8 / 4;
-      background-color: blue;
     }
     .compet_graph {
       grid-area: 8 / 3 / 13 / 4;

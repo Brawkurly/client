@@ -127,37 +127,37 @@ function DomePrice() {
     setType(Number(event.target.id));
   };
 
-  // useEffect(() => {
-  //   const now = today();
-  //   let y = 0;
-  //   for (let x = 1; x < 2; x++) {
-  //     let state = "";
-  //     let temp = [];
-  //     for (let z = 0; z < 3; z++) {
-  //       axios
-  //         .get(kamis.dome(), {
-  //           params: {
-  //             p_cert_key: API_KEY,
-  //             p_cert_id: "heo3793",
-  //             p_country_code: 1101,
-  //             p_returntype: "json",
-  //             p_item_category_code: x * 100,
-  //             p_product_cls_code: "02",
-  //             p_regday: now - 2,
-  //             p_convert_kg_yn: "N",
-  //           },
-  //         })
-  //         .then(({ data }) => {
-  //           state = data.data.error_code;
-  //           temp = data.data.item;
-  //         });
-  //       if (state === "000") {
-  //         console.log(temp);
-  //         break;
-  //       } else y++;
-  //     }
-  //   }
-  // }, []);
+  useEffect(() => {
+    const now = today();
+    let y = 0;
+    for (let x = 1; x < 2; x++) {
+      let state = "";
+      let temp = [];
+      for (let z = 0; z < 3; z++) {
+        axios
+          .get(kamis.dome(), {
+            params: {
+              p_cert_key: API_KEY,
+              p_cert_id: "heo3793",
+              p_country_code: 1101,
+              p_returntype: "json",
+              p_item_category_code: x * 100,
+              p_product_cls_code: "02",
+              p_regday: now - 2,
+              p_convert_kg_yn: "N",
+            },
+          })
+          .then(({ data }) => {
+            state = data.data.error_code;
+            temp = data.data.item;
+          });
+        if (state === "000") {
+          console.log(temp);
+          break;
+        } else break;
+      }
+    }
+  }, []);
 
   return (
     <FlexBox>

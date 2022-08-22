@@ -10,6 +10,8 @@ import { useRecoilState } from "recoil";
 import { Data } from "./atoms";
 import LiveReservation from "./components/LiveReservation";
 import TodaySell from "./components/TodaySell";
+import CompetitionPrice from "./components/CompetitionPrice";
+import Ranking from "./components/Ranking";
 
 function App() {
   // api 호출
@@ -53,36 +55,15 @@ function App() {
       competitorPrice: [
         {
           competitor: "쿠팡",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
         {
           competitor: "SSG",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
         {
           competitor: "네이버",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
       ],
       changePrice: [
@@ -111,7 +92,9 @@ function App() {
         <div className="live_reservation">
           <LiveReservation />
         </div>
-        <div className="live_hot"></div>
+        <div className="live_hot">
+          <Ranking />
+        </div>
         <div className="pair_value">
           <PairValue />
         </div>
@@ -121,7 +104,9 @@ function App() {
         <div className="dome_price">
           <DomePrice />
         </div>
-        <div className="compet_price"></div>
+        <div className="compet_price">
+          <CompetitionPrice />
+        </div>
         <div className="compet_graph"></div>
       </div>
     </Wrapper>
