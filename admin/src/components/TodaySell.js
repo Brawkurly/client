@@ -16,17 +16,19 @@ const GridBox = styled.div`
     display: flex;
     flex-direction: column;
 
+    font-size: 12px;
     font-weight: 600;
     font-family: "Pretendard-Regular";
     background-color: ${(props) => props.theme.transBlue};
     border-radius: 10px;
-    padding: 15px 25px;
-    :nth-child(1) {
-      color: white;
-    }
+    padding: 10px 15px;
+
+    color: white;
+
     .highlight {
-      color: ${(props) => props.color};
-      font-size: 34px;
+      margin-top: 3px;
+      align-self: center;
+      font-size: 20px;
     }
   }
 `;
@@ -40,13 +42,28 @@ function TodaySell() {
       <GridBox>
         <div className="box">
           <span>당일 판매 금액</span>
-          <div className="highlight" color={"red"}>
-            {data?.totalPrice}
+          <div className="highlight" style={{ color: "red" }}>
+            {data?.totalPrice}원
           </div>
         </div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
+        <div className="box">
+          <span>당일 판매 금액</span>
+          <div className="highlight" style={{ color: "#cea16b" }}>
+            {data?.totalPrice}원
+          </div>
+        </div>
+        <div className="box">
+          <span>당일 판매 금액</span>
+          <div className="highlight" style={{ color: "#67a1c8" }}>
+            {data?.totalPrice}원
+          </div>
+        </div>
+        <div className="box">
+          <span>당일 판매 금액</span>
+          <div className="highlight" style={{ color: "#4ca7a8" }}>
+            {data?.totalPrice}원
+          </div>
+        </div>
       </GridBox>
     </FlexBox>
   );

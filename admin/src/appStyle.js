@@ -9,8 +9,8 @@ const Wrapper = styled.div`
 
   .grid {
     display: grid;
-    grid-template-columns: minmax(500px, 2fr) minmax(700px, 2.5fr) minmax(
-        500px,
+    grid-template-columns: minmax(300px, 2fr) minmax(500px, 2.5fr) minmax(
+        300px,
         2fr
       );
     grid-template-rows: repeat(12, 1fr);

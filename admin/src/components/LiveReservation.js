@@ -12,6 +12,10 @@ const GridBox = styled.div`
   padding: 5px 10px;
   width: 100%;
   height: 100%;
+
+  .chartBox {
+    max-width: 400px;
+  }
 `;
 
 function LiveReservation() {
@@ -23,7 +27,9 @@ function LiveReservation() {
       <div className="content">
         <GridBox>
           <Reservation />
-          <BarChart></BarChart>
+          <div className="chartBox">
+            <BarChart></BarChart>
+          </div>
         </GridBox>
       </div>
     </FlexBox>
