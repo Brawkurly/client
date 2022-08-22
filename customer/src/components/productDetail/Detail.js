@@ -47,7 +47,7 @@ function Detail() {
     axios
       .post("http://54.180.2.69/api/order/reservation", {
         productName: product.name,
-        price: product.price,
+        price: price,
       })
       .then((response) => {
         if (response.status === 200) {
@@ -105,7 +105,15 @@ function Detail() {
           </div>
 
           <div className={styles.line}></div>
-
+          <div
+            style={{
+              width: "100%",
+              paddingLeft: "50%",
+              justifySelf: "flex-end",
+            }}
+          >
+            <img src="/images/point.png" style={{ width: "100%" }} alt="plus" />
+          </div>
           <div className={styles.sum}>
             <div>
               <span className={styles.total}>즉시 구매금액</span>
