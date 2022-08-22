@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import styles from "./Detail.module.css";
+import axios from "axios";
 
 function Detail() {
   const location = useLocation();
@@ -14,6 +15,38 @@ function Detail() {
     "김치1",
     "김치2",
   ];
+
+  const buyNow = () => {
+    axios
+      .post("http://54.180.2.69/api/order/purchase", {
+        productName: product.name,
+        price: product.price,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("구매에 성공하였습니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const buyAfter = () => {
+    axios
+      .post("http://54.180.2.69/api/order/reservation", {
+        productName: product.name,
+        price: product.price,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("예약구매에 성공하였습니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -82,8 +115,12 @@ function Detail() {
           </div>
 
           <div className={styles.btn}>
-            <button className={styles.btn_buy}>즉시 구매하기</button>
-            <button className={styles.btn_cart}>구매 예약하기</button>
+            <button onClick={buyNow} className={styles.btn_buy}>
+              즉시 구매하기
+            </button>
+            <button onClick={buyAfter} className={styles.btn_cart}>
+              구매 예약하기
+            </button>
           </div>
         </section>
       </main>
