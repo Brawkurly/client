@@ -61,7 +61,7 @@
   font-size: 36px;
   line-height: 45px;
   color: #000000;
-  margin-bottom: 138px;
+  margin-bottom: 108px;
 }
 
 .product_info .unit {
@@ -129,7 +129,7 @@
 .amount .plus {
   position: absolute;
   width: 20px;
-  height: 40px;
+  height: 20px;
   top: 50%;
   right: 14px;
   transform: translateY(-50%);
@@ -154,6 +154,13 @@
   font-size: 18px;
   line-height: 23px;
   color: #767676;
+  font-weight: bold;
+}
+
+.sum .total_info {
+  display: flex;
+  align-items: center;
+  margin-right: -20px;
 }
 
 .sum .total_count::after {
@@ -168,18 +175,24 @@
   font-size: 36px;
   line-height: 45px;
   color: #461e9b;
+  font-weight: bold;
 }
 
 .sum .total_unit1 {
   font-size: 18px;
   line-height: 23px;
   color: #5f0080;
+  font-weight: bold;
 }
 
 .sum .total_unit2 {
   font-size: 18px;
   line-height: 23px;
   color: #461e9b;
+  font-weight: bold;
+}
+.sum .priceBtn {
+  width: 14px;
 }
 
 .btn {

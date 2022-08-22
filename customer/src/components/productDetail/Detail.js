@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import styles from "./Detail.module.css";
+import axios from "axios";
+import { useState } from "react";
 
 function Detail() {
   const location = useLocation();
@@ -14,6 +16,48 @@ function Detail() {
     "김치1",
     "김치2",
   ];
+
+  const [price, setPrice] = useState(product.price);
+  const upPrice = () => {
+    setPrice(price + 100);
+  };
+
+  const downPrice = () => {
+    if (price <= 100) setPrice(price);
+    else setPrice(price - 100);
+  };
+
+  const buyNow = () => {
+    axios
+      .post("http://54.180.2.69/api/order/purchase", {
+        productName: product.name,
+        price: product.price,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("구매에 성공하였습니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const buyAfter = () => {
+    axios
+      .post("http://54.180.2.69/api/order/reservation", {
+        productName: product.name,
+        price: price,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("예약구매에 성공하였습니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -31,7 +75,7 @@ function Detail() {
             <p className={styles.seller_store}>{product.product}</p>
             <p className={styles.product_name}>{product.name}</p>
             <span className={styles.price}>
-              {product.price}
+              {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               <span className={styles.unit}>원</span>
             </span>
           </div>
@@ -61,29 +105,101 @@ function Detail() {
           </div>
 
           <div className={styles.line}></div>
-
+          <div
+            style={{
+              width: "100%",
+              paddingLeft: "53%",
+              justifySelf: "flex-end",
+            }}
+          >
+            {" "}
+            <img src="/images/sale.png" style={{ width: "24px" }} alt="sale" />
+            <span
+              style={{
+                fontWeight: "bold",
+                fontSize: 13,
+                color: "red",
+                backgroundColor: "#EDF0FE",
+              }}
+            >
+              구매 예약하고{" "}
+              {(product.price - price)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              원 저렴하게 구매하기
+            </span>
+          </div>
           <div className={styles.sum}>
-            <div className={styles.total_info}>
+            <div>
               <span className={styles.total}>즉시 구매금액</span>
               <span className={styles.total_price}>
                 {"  "}
-                {product.price}
+                {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 <span className={styles.total_unit1}>원</span>
               </span>
             </div>
 
             <div className={styles.total_info}>
-              <span className={styles.total}>예약 상품금액</span>
+              <span
+                className={styles.total}
+                style={{ marginTop: "10px", marginRight: "5px" }}
+              >
+                상품 예약금액
+              </span>
               <span className={styles.total_price}>
-                {"  "}16,800
+                {"  "}
+                {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 <span className={styles.total_unit2}>원</span>
               </span>
+              <div
+                style={{
+                  width: "20px",
+                  backgroundColor: "red",
+                  display: "block",
+                  marginLeft: "15px",
+                }}
+              >
+                <div
+                  className="plus"
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                  }}
+                  onClick={upPrice}
+                >
+                  <img
+                    className={styles.priceBtn}
+                    src="/images/plus.png"
+                    alt="plus"
+                  />
+                </div>
+                <div
+                  className="minus"
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                  }}
+                  onClick={downPrice}
+                >
+                  <img
+                    className={styles.priceBtn}
+                    src="/images/minus.png"
+                    alt="minus"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
           <div className={styles.btn}>
-            <button className={styles.btn_buy}>즉시 구매하기</button>
-            <button className={styles.btn_cart}>구매 예약하기</button>
+            <button onClick={buyNow} className={styles.btn_buy}>
+              즉시 구매하기
+            </button>
+            <button onClick={buyAfter} className={styles.btn_cart}>
+              구매 예약하기
+            </button>
           </div>
         </section>
       </main>
