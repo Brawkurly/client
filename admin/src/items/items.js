@@ -21,20 +21,22 @@ export const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   h1 {
     font-family: "Pretendard-Regular";
     font-weight: 700;
+    flex: 0 0 auto;
+    padding-bottom: 15px;
     display: flex;
-    align-items: center;
-    height: 60px !important;
     color: ${(props) => props.theme.White};
     font-size: ${(props) => props.theme.MediumFont};
   }
   .content {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    flex-grow: 0;
     width: 100%;
     height: 100%;
     border-radius: 10px;
