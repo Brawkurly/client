@@ -108,11 +108,26 @@ function Detail() {
           <div
             style={{
               width: "100%",
-              paddingLeft: "50%",
+              paddingLeft: "53%",
               justifySelf: "flex-end",
             }}
           >
-            <img src="/images/point.png" style={{ width: "100%" }} alt="plus" />
+            {" "}
+            <img src="/images/sale.png" style={{ width: "24px" }} alt="sale" />
+            <span
+              style={{
+                fontWeight: "bold",
+                fontSize: 13,
+                color: "red",
+                backgroundColor: "#EDF0FE",
+              }}
+            >
+              구매 예약하고{" "}
+              {(product.price - price)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              원 저렴하게 구매하기
+            </span>
           </div>
           <div className={styles.sum}>
             <div>
@@ -129,7 +144,7 @@ function Detail() {
                 className={styles.total}
                 style={{ marginTop: "10px", marginRight: "5px" }}
               >
-                예약 상품금액
+                상품 예약금액
               </span>
               <span className={styles.total_price}>
                 {"  "}
