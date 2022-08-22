@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import styles from "./Detail.module.css";
 import axios from "axios";
+import { useState } from "react";
 
 function Detail() {
   const location = useLocation();
@@ -15,6 +16,16 @@ function Detail() {
     "김치1",
     "김치2",
   ];
+
+  const [price, setPrice] = useState(product.price);
+  const upPrice = () => {
+    setPrice(price + 100);
+  };
+
+  const downPrice = () => {
+    if (price <= 100) setPrice(price);
+    else setPrice(price - 100);
+  };
 
   const buyNow = () => {
     axios
@@ -96,7 +107,7 @@ function Detail() {
           <div className={styles.line}></div>
 
           <div className={styles.sum}>
-            <div className={styles.total_info}>
+            <div>
               <span className={styles.total}>즉시 구매금액</span>
               <span className={styles.total_price}>
                 {"  "}
@@ -106,11 +117,56 @@ function Detail() {
             </div>
 
             <div className={styles.total_info}>
-              <span className={styles.total}>예약 상품금액</span>
+              <span
+                className={styles.total}
+                style={{ marginTop: "10px", marginRight: "5px" }}
+              >
+                예약 상품금액
+              </span>
               <span className={styles.total_price}>
-                {"  "}16,800
+                {"  "}
+                {price}
                 <span className={styles.total_unit2}>원</span>
               </span>
+              <div
+                style={{
+                  width: "20px",
+                  backgroundColor: "red",
+                  display: "block",
+                  marginLeft: "15px",
+                }}
+              >
+                <div
+                  className="plus"
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                  }}
+                  onClick={upPrice}
+                >
+                  <img
+                    className={styles.priceBtn}
+                    src="/images/plus.png"
+                    alt="plus"
+                  />
+                </div>
+                <div
+                  className="minus"
+                  style={{
+                    cursor: "pointer",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                  }}
+                  onClick={downPrice}
+                >
+                  <img
+                    className={styles.priceBtn}
+                    src="/images/minus.png"
+                    alt="minus"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 

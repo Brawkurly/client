@@ -13,7 +13,7 @@ function Product() {
               productId: 1,
               product: "감귤",
               name: "당도선별 서귀포 감귤 1.5kg",
-              price: "16,800",
+              price: 16800,
             },
           });
         }}
@@ -43,7 +43,7 @@ function Product() {
               productId: 2,
               product: "감귤",
               name: "[달콤트리] 고당도 제주 감귤 1.5kg",
-              price: "23,900",
+              price: 23900,
             },
           });
         }}
@@ -71,7 +71,7 @@ function Product() {
               productId: 3,
               product: "고구마",
               name: "[KF365] 호박고구마 800g/봉",
-              price: "4,780",
+              price: 4780,
             },
           });
         }}
@@ -101,7 +101,7 @@ function Product() {
               productId: 4,
               product: "고구마",
               name: "[KF365] 밤고구마 800g/봉",
-              price: "5,580",
+              price: 5580,
             },
           });
         }}
@@ -131,7 +131,7 @@ function Product() {
               productId: 5,
               product: "쌀",
               name: "영광 신동진 쌀 10kg",
-              price: "29,900",
+              price: 29900,
             },
           });
         }}
@@ -161,7 +161,7 @@ function Product() {
               productId: 6,
               product: "쌀",
               name: "임금님표 이천쌀(추청) 10kg",
-              price: "31,900",
+              price: 31900,
             },
           });
         }}
@@ -192,7 +192,7 @@ function Product() {
               productId: 7,
               product: "김치",
               name: "[한국농협김치] 포기김치 2.5kg",
-              price: "22,000",
+              price: 22000,
             },
           });
         }}
@@ -222,7 +222,7 @@ function Product() {
               productId: 8,
               product: "김치",
               name: "[한국의집] 배추김치 2.5kg",
-              price: "30,000",
+              price: 30000,
             },
           });
         }}
