@@ -9,6 +9,8 @@ const theme = {
   // Font Size
   LargeFont: "30px",
   MediumFont: "24px",
+
+  font: "Pretendard-Regular",
 };
 
 export default theme;

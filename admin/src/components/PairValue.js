@@ -23,19 +23,18 @@ const GridBox = styled.div`
     padding: 0px 10px;
     .title {
       color: white;
-      font-size: 24px;
+      font-size: 20px;
       background-color: ${(props) => props.theme.DarkBlue};
     }
     .priceWrap {
-      padding-bottom: 10px;
       .dan {
-        font-size: 24px;
+        font-size: 20px;
       }
     }
   }
   .price {
     font-weight: 600;
-    font-size: 42px;
+    font-size: 26px;
   }
 
   .row {
@@ -59,12 +58,12 @@ const GridBox = styled.div`
 
       align-items: center;
       h1 {
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 700;
         flex: 0.5;
       }
       p {
-        font-size: 50px;
+        font-size: 25px;
         font-weight: 700;
         flex: 0.5;
         color: #eb8180;

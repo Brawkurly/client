@@ -90,6 +90,7 @@ const SmallButtonWrap = styled.div`
 `;
 
 const GraphBox = styled.div`
+  max-width: 400px;
   flex: 1;
   padding-top: 25px;
   width: 100%;
