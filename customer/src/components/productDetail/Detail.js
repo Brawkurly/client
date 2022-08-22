@@ -75,7 +75,7 @@ function Detail() {
             <p className={styles.seller_store}>{product.product}</p>
             <p className={styles.product_name}>{product.name}</p>
             <span className={styles.price}>
-              {product.price}
+              {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               <span className={styles.unit}>원</span>
             </span>
           </div>
@@ -119,7 +119,7 @@ function Detail() {
               <span className={styles.total}>즉시 구매금액</span>
               <span className={styles.total_price}>
                 {"  "}
-                {product.price}
+                {product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 <span className={styles.total_unit1}>원</span>
               </span>
             </div>
@@ -133,7 +133,7 @@ function Detail() {
               </span>
               <span className={styles.total_price}>
                 {"  "}
-                {price}
+                {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 <span className={styles.total_unit2}>원</span>
               </span>
               <div
