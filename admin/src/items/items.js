@@ -32,15 +32,12 @@ export const FlexBox = styled.div`
     font-size: ${(props) => props.theme.MediumFont};
   }
   .content {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
     flex-grow: 0;
     width: 100%;
     height: 100%;
     border-radius: 10px;
     padding: 10px;
     background-color: ${(props) => props.theme.transBlue};
+    overflow: hidden;
   }
 `;
