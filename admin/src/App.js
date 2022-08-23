@@ -37,8 +37,13 @@ function App() {
         { price: 16400, cnt: 10 },
         { price: 16300, cnt: 21 },
         { price: 16200, cnt: 17 },
+        { price: 16100, cnt: 16 },
+        { price: 16000, cnt: 12 },
       ],
       consumerPopularityPurchase: [
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
+        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
         { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
         { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
         { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
@@ -47,6 +52,11 @@ function App() {
         { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
         { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
         { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
+        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
       ],
       totalPrice: 1784000,
       totalPrice: 1784000,
@@ -92,9 +102,6 @@ function App() {
         <div className="live_reservation">
           <LiveReservation />
         </div>
-        <div className="live_hot">
-          <Ranking />
-        </div>
         <div className="pair_value">
           <PairValue />
         </div>
@@ -107,7 +114,9 @@ function App() {
         <div className="compet_price">
           <CompetitionPrice />
         </div>
-        <div className="compet_graph"></div>
+        <div className="compet_graph">
+          <Ranking />
+        </div>
       </div>
     </Wrapper>
   );

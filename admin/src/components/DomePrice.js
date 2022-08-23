@@ -1,4 +1,4 @@
-import axios from "axios";
+import Axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -40,7 +40,7 @@ const Box = styled.div`
 
   .grid_head {
     display: grid;
-    grid-template-columns: 4fr 1.5fr 2fr 2fr 2fr 2fr 2fr 15px;
+    grid-template-columns: 4fr 2fr 2fr 2fr 2fr 2fr 15px;
     grid-gap: 1px;
 
     grid-template-rows: 30px;
@@ -48,8 +48,8 @@ const Box = styled.div`
   }
   .grid_body {
     display: grid;
+    height: 100%;
     grid-template-columns: 1fr;
-    grid-row: 30px;
     grid-auto-flow: row;
     grid-auto-rows: 30px;
     grid-gap: 1px;
@@ -58,7 +58,7 @@ const Box = styled.div`
     .grid_row {
       display: grid;
       grid-gap: 1px;
-      grid-template-columns: 4fr 1.5fr 2fr 2fr 2fr 2fr 2fr;
+      grid-template-columns: 4fr 2fr 2fr 2fr 2fr 2fr;
       grid-template-rows: 30px;
       background-color: white;
 
@@ -78,42 +78,9 @@ const Box = styled.div`
 
 const date = new Date();
 
-const dump = [
-  {
-    type: 1,
-    name: "쌀",
-    dan: "1kg",
-    price: 10,
-    priceRate: "10%",
-    beforeOneDay: 10,
-    beforeOneMonth: 20,
-    beforeOneYear: 30,
-  },
-  {
-    type: 1,
-    name: "쌀",
-    dan: "1kg",
-    price: 10,
-    priceRate: "10%",
-    beforeOneDay: 10,
-    beforeOneMonth: 20,
-    beforeOneYear: 30,
-  },
-  {
-    type: 2,
-    name: "쌀",
-    dan: "1kg",
-    price: 10,
-    priceRate: "10%",
-    beforeOneDay: 10,
-    beforeOneMonth: 20,
-    beforeOneYear: 30,
-  },
-];
-
 function DomePrice() {
   const [type, setType] = useState(1);
-  const datas = [];
+  const [datas, setDatas] = useState([]);
   const today = () => {
     const nowDay = date.getDay();
     const yy = date.getFullYear();
@@ -127,38 +94,53 @@ function DomePrice() {
     setType(Number(event.target.id));
   };
 
+  let now = today();
+  const axiosInstance = Axios.create();
+
   useEffect(() => {
     const now = today();
-    let y = 0;
-    for (let x = 1; x < 2; x++) {
-      let state = "";
-      let temp = [];
-      for (let z = 0; z < 3; z++) {
-        axios
-          .get(kamis.dome(), {
-            params: {
-              p_cert_key: API_KEY,
-              p_cert_id: "heo3793",
-              p_country_code: 1101,
-              p_returntype: "json",
-              p_item_category_code: x * 100,
-              p_product_cls_code: "02",
-              p_regday: now - 2,
-              p_convert_kg_yn: "N",
-            },
-          })
-          .then(({ data }) => {
-            state = data.data.error_code;
-            temp = data.data.item;
-          });
-        if (state === "000") {
-          console.log(temp);
-          break;
-        } else break;
-      }
-    }
-  }, []);
 
+    axiosInstance.get(kamis.dome(), {}).then(({ data }) => {
+      console.log(data);
+      data.price.map((item) => {
+        console.log(
+          (parseInt(item.dpr1.replace(/,/g, "")) -
+            parseInt(item.dpr2.replace(/,/g, ""))) /
+            parseInt(item.dpr2.replace(/,/g, ""))
+        );
+
+        const temp = {
+          type: item.category_code / 100,
+          name: item.item_name,
+          dan: item.unit,
+          price: item.dpr1,
+          // priceRate:
+          //   (parseInt(item.dpr1.replace(/,/g, "")) -
+          //     parseInt(item.dpr2.replace(/,/g, ""))) /
+          //   parseInt(item.dpr2.replace(/,/g, "")),
+          beforeOneDay: item.dpr2,
+          beforeOneMonth: item.dpr3,
+          beforeOneYear: item.dpr4,
+        };
+
+        setDatas((val) => [...val, temp]);
+      });
+    });
+  }, []);
+  useEffect(() => {
+    axiosInstance.get(kamis.dome(), {
+      params: {
+        p_cert_key: API_KEY,
+        p_cert_id: "heo3793",
+        p_country_code: 1101,
+        p_returntype: "json",
+        p_item_category_code: 100,
+        p_product_cls_code: "02",
+        p_regday: now,
+        p_convert_kg_yn: "N",
+      },
+    });
+  });
   return (
     <FlexBox>
       <h1>상품별 도매가</h1>
@@ -198,27 +180,27 @@ function DomePrice() {
               onClick={changeType}
               className={type === 5 ? "active" : null}
             >
-              수산물
+              육류
             </li>
           </ul>
           <div className="grid_head">
             <span>품목</span>
             <span>단위</span>
             <span>가격</span>
-            <span>등락률</span>
+            {/* <span>등락률</span> */}
             <span>전일</span>
             <span>1개월전</span>
             <span>1년전</span>
           </div>
           <div className="grid_body">
-            {dump.map((data, idx) => {
+            {datas.map((data, idx) => {
               if (data.type === type) {
                 return (
                   <div className="grid_row" key={idx}>
                     <div className="col">{data.name}</div>
                     <div className="col">{data.dan}</div>
                     <div className="col">{data.price}</div>
-                    <div className="col">{data.priceRate}</div>
+                    {/* <div className="col">{data.priceRate}</div> */}
                     <div className="col">{data.beforeOneDay}</div>
                     <div className="col">{data.beforeOneMonth}</div>
                     <div className="col">{data.beforeOneYear}</div>

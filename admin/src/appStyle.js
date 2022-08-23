@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     }
 
     .live_reservation {
-      grid-area: 4 / 1 / 10 / 2;
+      grid-area: 4 / 1 / 13 / 2;
     }
     .live_hot {
       grid-area: 10 / 1 / 13 / 2;
@@ -45,7 +45,6 @@ const Wrapper = styled.div`
     }
     .compet_graph {
       grid-area: 8 / 3 / 13 / 4;
-      background-color: gray;
     }
   }
 `;
