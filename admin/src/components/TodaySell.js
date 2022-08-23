@@ -47,8 +47,8 @@ function TodaySell() {
       <GridBox>
         <div className="box">
           <span>당일 판매 금액</span>
-          <div className="highlight" style={{ color: "red" }}>
-            {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
+          <div className="highlight" style={{ color: "#eb8180" }}>
+            {price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원
           </div>
         </div>
         <div className="box">

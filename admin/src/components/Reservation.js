@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
 
     width: 98%;
-    height: 30px;
+    height: calc(100% / 4 - 4px);
     margin: 0px 0px 4px;
     color: white;
     border-radius: 10px;
