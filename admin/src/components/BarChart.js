@@ -42,6 +42,17 @@ function BarChart() {
               categories: consumerReserveCnt?.map((price) => price?.price),
               type: "number",
             },
+            yaxis: {
+              labels: {
+                style: {
+                  fontSize: "12px",
+                  fontFamily: "Helvetica, Arial, sans-serif",
+                  fontWeight: 500,
+                },
+                formatter: (val) =>
+                  val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+              },
+            },
             colors: ["#6650d3"],
             fill: {
               type: ["gradient"],

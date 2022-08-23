@@ -36,7 +36,13 @@ function LineChart() {
               curve: "smooth",
               width: 10,
             },
-            yaxis: { show: true },
+            yaxis: {
+              show: true,
+              labels: {
+                formatter: (val) =>
+                  val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+              },
+            },
             xaxis: {
               axisBorder: { show: true },
               labels: { show: true },

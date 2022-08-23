@@ -19,31 +19,30 @@ function App() {
   const [nowData, setNowData] = useRecoilState(Data);
   //axios 후
   const setData = (itemId) => {
-    axios.get(
-      server.web(itemId).then((res) => {
-        setNowData((val) => ({
-          ...val,
-          productId: res.productId,
-          productName: res.productName,
-          currentPrice: res.currentPrice,
-          supplyPrice: res.supplyPrice,
-          fairPrice: res.fairPrice,
-          consumerRecentReserve: res.consumerRecentReserve,
-          consumerReserveCnt: res.consumerReserveCnt,
-          consumerPopularityPurchase: res.consumerPopularityPurchase,
-          consumerPopularityReserve: res.consumerPopularityReserve,
-          totalPrice: res.totalPrice,
-          totalPrice: res.totalPrice,
-          totalSalesCnt: res.totalSalesCnt,
-          consumerReservationCnt: res.consumerReservationCnt,
-          competitorPrice: res.competitorPrice,
-          changePrice: res.changePrice,
-        }));
-      })
-    );
+    axios.get(server.web(itemId)).then(({ data: res }) => {
+      console.log(res);
+      setNowData((val) => ({
+        ...val,
+        productId: res.productId,
+        productName: res.productName,
+        currentPrice: res.currentPrice,
+        supplyPrice: res.supplyPrice,
+        fairPrice: res.fairPrice,
+        consumerRecentReserve: res.consumerRecentReserve,
+        consumerReserveCnt: res.consumerReserveCnt,
+        consumerPopularityPurchase: res.consumerPopularityPurchase,
+        consumerPopularityReserve: res.consumerPopularityReserve,
+        totalPrice: res.totalPrice,
+        totalPrice: res.totalPrice,
+        totalSalesCnt: res.totalSalesCnt,
+        consumerReservationCnt: res.consumerReservationCnt,
+        competitorPrice: res.competitorPrice,
+        changePrice: res.changePrice,
+      }));
+    });
   };
   useEffect(() => {
-    // setData(1);
+    setData(1);
     setNowData((val) => ({
       ...val,
       productId: 1,

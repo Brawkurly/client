@@ -54,7 +54,13 @@ function Reservation() {
       {consumerRecentReserve?.map((data, idx) => {
         return (
           <div className="box" key={idx}>
-            <span className="price">{data?.price} 원</span>
+            <span className="price">
+              {data?.price &&
+                data?.price
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              원
+            </span>
             <span className="date">
               {data.reservationTime.replace("T", " ").replace(/\..*/, "")}
             </span>

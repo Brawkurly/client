@@ -114,7 +114,7 @@ function PriceVar({ setData }) {
     ],
     2: [
       { id: 3, name: "[KF365] 호박고구마 800g/봉" },
-      { id: 4, name: "영광 신동진 쌀 10kg" },
+      { id: 4, name: "[KF365] 밤고구마 800g/봉" },
     ],
     3: [
       { id: 5, name: "임금님표 이천쌀(추청) 10kg" },
@@ -130,7 +130,7 @@ function PriceVar({ setData }) {
   };
   // axios 추가해야하는 곳
   const changeSmallIdx = (id) => {
-    // setData(id)
+    setData(id);
     setNowSmallIdx(id);
   };
 
