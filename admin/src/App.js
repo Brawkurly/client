@@ -1,4 +1,4 @@
-import { kamis } from "./api/drf";
+import { kamis, server } from "./api/drf";
 
 import { Title } from "./items/items";
 import Wrapper from "./appStyle";
@@ -12,12 +12,38 @@ import LiveReservation from "./components/LiveReservation";
 import TodaySell from "./components/TodaySell";
 import CompetitionPrice from "./components/CompetitionPrice";
 import Ranking from "./components/Ranking";
+import axios from "axios";
 
 function App() {
   // api 호출
   const [nowData, setNowData] = useRecoilState(Data);
+  //axios 후
+  const setData = (itemId) => {
+    axios.get(
+      server.web(itemId).then((res) => {
+        setNowData((val) => ({
+          ...val,
+          productId: res.productId,
+          productName: res.productName,
+          currentPrice: res.currentPrice,
+          supplyPrice: res.supplyPrice,
+          fairPrice: res.fairPrice,
+          consumerRecentReserve: res.consumerRecentReserve,
+          consumerReserveCnt: res.consumerReserveCnt,
+          consumerPopularityPurchase: res.consumerPopularityPurchase,
+          consumerPopularityReserve: res.consumerPopularityReserve,
+          totalPrice: res.totalPrice,
+          totalPrice: res.totalPrice,
+          totalSalesCnt: res.totalSalesCnt,
+          consumerReservationCnt: res.consumerReservationCnt,
+          competitorPrice: res.competitorPrice,
+          changePrice: res.changePrice,
+        }));
+      })
+    );
+  };
   useEffect(() => {
-    //axios 후
+    // setData(1);
     setNowData((val) => ({
       ...val,
       productId: 1,
@@ -106,7 +132,7 @@ function App() {
           <PairValue />
         </div>
         <div className="value_var">
-          <PriceVar />
+          <PriceVar setData={setData} />
         </div>
         <div className="dome_price">
           <DomePrice />
