@@ -17,7 +17,10 @@ const ButtonWrap = styled.div`
     font-family: "Pretendard-Regular";
     font-weight: 500;
     width: 100%;
-    height: 30px;
+    /* height: 30px; */
+    /* height: 4vh; */
+    font-size: 3vh;
+    padding: 10px 0px;
     margin: 0px 5px 5px;
 
     display: flex;
@@ -65,14 +68,13 @@ const SmallButtonWrap = styled.div`
 
   .SmallButton {
     display: flex;
-    padding: 0px 10px;
-    height: 20px;
-    margin: 3px 3px 0px;
+    padding: 5px 10px;
+    margin: 3px 3px 10px;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    font-size: 2vh;
     color: ${(props) => props.theme.White};
     border-radius: 10px;
     background-color: ${(props) => props.theme.LightBlue};

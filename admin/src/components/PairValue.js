@@ -18,12 +18,13 @@ const GridBox = styled.div`
     font-weight: 500;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-end;
+    align-items: center;
     background-color: #b8e7e1;
-    padding: 0px 30px 5%;
+    padding: 0px 30px;
+
     .title {
       color: white;
-      font-size: calc(100vh * 0.02);
+      font-size: calc(100vw * 0.01);
       background-color: ${(props) => props.theme.DarkBlue};
     }
     .priceWrap {
@@ -34,7 +35,7 @@ const GridBox = styled.div`
   }
   .price {
     font-weight: 600;
-    font-size: calc(100vh * 0.04);
+    font-size: calc(100vw * 0.02);
   }
 
   .row {
@@ -54,18 +55,19 @@ const GridBox = styled.div`
       flex: 0.7;
       height: 100%;
       display: flex;
+      justify-content: center;
       flex-direction: column;
 
       align-items: center;
       h1 {
-        font-size: 28px;
+        font-size: calc(100vw * 0.02);
         font-weight: 700;
-        flex: 0.5;
+        word-break: unset;
       }
       p {
-        font-size: 25px;
+        font-size: calc(100vw * 0.02);
         font-weight: 700;
-        flex: 0.5;
+
         color: #eb8180;
       }
     }
@@ -74,6 +76,7 @@ const GridBox = styled.div`
 
 function PairValue({}) {
   const data = useRecoilValue(Data);
+
   return (
     <FlexBox>
       <h1>적정 가격</h1>
@@ -83,9 +86,10 @@ function PairValue({}) {
             <span className="title">현재가</span>
             <div className="priceWrap">
               <span className="price">
-                {data?.currentPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                {data.currentPrice &&
+                  data?.currentPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
               <span className="dan">원</span>
             </div>
@@ -94,9 +98,10 @@ function PairValue({}) {
             <span className="title">공급자가</span>
             <div className="priceWrap">
               <span className="price">
-                {data?.supplyPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                {data.supplyPrice &&
+                  data?.supplyPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </span>
               <span className="dan">원</span>
             </div>
@@ -112,9 +117,10 @@ function PairValue({}) {
               <h1>{data.productName}</h1>
               <p>
                 적정가&nbsp;&nbsp;&nbsp;&nbsp;
-                {data?.fairPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                {data.fairPrice &&
+                  data?.fairPrice
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 원
               </p>
             </div>

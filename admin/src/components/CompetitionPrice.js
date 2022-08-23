@@ -14,10 +14,18 @@ const GridBox = styled.div`
 
   color: white;
 
-  .img__text {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  .grid__lower {
+    display: grid;
+    grid-template-rows: minmax(20px, 1fr), 3fr;
+    grid-template-columns: 1fr 1fr;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+
+    h1 {
+      padding-bottom: 0px;
+      grid-column: 1 / 3;
+    }
   }
 
   .flex__column {
@@ -41,8 +49,8 @@ const GridBox = styled.div`
   }
 
   .img {
-    width: 40px;
-    height: 40px;
+    width: 3vw;
+    height: 3vw;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -58,7 +66,8 @@ function CompetitionPrice() {
       <h1>경쟁업체 판매가</h1>
       <div className="content">
         <GridBox>
-          <div className="img__text">
+          <div className="grid__lower">
+            <h1>현재 최저가</h1>
             <div
               className="img"
               style={{
