@@ -2,7 +2,9 @@ import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import { Data, lowCom } from "../atoms";
 import { FlexBox } from "../items/items";
-
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const GridBox = styled.div`
   display: grid;
   grid-template-rows: 1fr;
@@ -18,10 +20,11 @@ const GridBox = styled.div`
     display: grid;
     grid-template-rows: minmax(20px, 1fr), 3fr;
     grid-template-columns: 1fr 1fr;
-    padding: 8px;
+    padding: 18px;
     width: 100%;
     height: 100%;
-
+    margin-left: 20px;
+    margin-top: 10px;
     h1 {
       padding-bottom: 0px;
       grid-column: 1 / 3;
@@ -57,9 +60,26 @@ const GridBox = styled.div`
   }
 `;
 
+const StyledSlider = styled(Slider)`
+  .slick-list div {
+    outline: none;
+  }
+`;
+
 function CompetitionPrice() {
   const { competitorPrice } = useRecoilValue(Data);
   const lowCompetition = useRecoilValue(lowCom);
+  const settings = {
+    dots: true,
+    infinite: true,
+    cssEase: "linear",
+    speed: 500,
+    slidesToShow: 1,
+    autoplay: true,
+    slidesToScroll: 1,
+    vertical: true,
+    arrows: false,
+  };
 
   return (
     <FlexBox>
@@ -76,20 +96,63 @@ function CompetitionPrice() {
             ></div>
             <div className="flex__column">
               <h1>{lowCompetition?.name}</h1>
-              <p>{lowCompetition?.price}</p>
+              <p>
+                {(lowCompetition?.price)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
+              </p>
             </div>
           </div>
-
-          <div className="comList">
+          <StyledSlider {...settings}>
             {competitorPrice?.map((data, idx) => {
               return (
-                <div key={idx} className="img__text">
-                  <div className="name">{data.competitor}</div>
-                  <div className="price">{data.price}</div>
+                <div
+                  key={idx}
+                  style={{ height: "200px", paddingLeft: "100px" }}
+                  className="img__text"
+                >
+                  <div
+                    className="name"
+                    style={{
+                      display: "flex",
+                      fontSize: "20px",
+                      height: "100px",
+                      width: "90%",
+                      marginTop: "10px",
+                      marginLeft: "30px",
+                      alignItems: "center",
+                      paddingLeft: "40px",
+                    }}
+                  >
+                    <img
+                      src={`/logo/${data.competitor}.png`}
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        marginRight: "20px",
+                      }}
+                    />
+                    {data.competitor}
+                  </div>
+                  <div
+                    className="price"
+                    style={{
+                      width: "174px",
+                      justifyContent: "center",
+                      display: "flex",
+                      paddingLeft: "100px",
+                    }}
+                  >
+                    {data.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    원
+                  </div>
                 </div>
               );
             })}
-          </div>
+          </StyledSlider>
         </GridBox>
       </div>
     </FlexBox>

@@ -42,9 +42,12 @@ const Wrapper = styled.div`
     }
     .compet_price {
       grid-area: 5 / 3 / 8 / 4;
+      padding-top: 30px;
+      height: 260px;
     }
     .compet_graph {
       grid-area: 8 / 3 / 13 / 4;
+      padding-top: 30px;
     }
   }
 `;
