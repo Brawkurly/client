@@ -4,7 +4,7 @@ import { Title } from "./items/items";
 import Wrapper from "./appStyle";
 import DomePrice from "./components/DomePrice";
 import PriceVar from "./components/PriceVar";
-import PairValue from "./components/PairValue";
+import PairValue from "./components/FairValue";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { Data } from "./atoms";
@@ -21,8 +21,10 @@ function App() {
   const setData = (itemId) => {
     axios.get(server.web(itemId)).then(({ data: res }) => {
       console.log(res);
+
       setNowData((val) => ({
         ...val,
+        dayToDay: res.dayToDay,
         productId: res.productId,
         productName: res.productName,
         currentPrice: res.currentPrice,
@@ -43,74 +45,6 @@ function App() {
   };
   useEffect(() => {
     setData(1);
-    setNowData((val) => ({
-      ...val,
-      productId: 1,
-      productName: "당도선별 서귀포 감귤 1.5kg",
-      currentPrice: 16800,
-      supplyPrice: 15900,
-      fairPrice: 16400,
-      consumerRecentReserve: [
-        { price: 16400, reservationTime: "2022-08-08T15:00:00.000+00:00" },
-        { price: 16300, reservationTime: "2022-08-09T14:00:00.000+00:00" },
-        { price: 16400, reservationTime: "2022-08-10T13:00:00.000+00:00" },
-        { price: 16400, reservationTime: "2022-08-11T13:00:00.000+00:00" },
-        { price: 16400, reservationTime: "2022-08-12T13:00:00.000+00:00" },
-        { price: 16400, reservationTime: "2022-08-13T13:00:00.000+00:00" },
-      ],
-      consumerReserveCnt: [
-        { price: 16400, cnt: 10 },
-        { price: 16300, cnt: 21 },
-        { price: 16200, cnt: 17 },
-        { price: 16100, cnt: 16 },
-        { price: 16000, cnt: 12 },
-      ],
-      consumerPopularityPurchase: [
-        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
-        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
-        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
-        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
-        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
-        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
-      ],
-      consumerPopularityReserve: [
-        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
-        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
-        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
-        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
-        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
-        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
-        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
-        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
-      ],
-      totalPrice: 1784000,
-      totalPrice: 1784000,
-      totalSalesCnt: 103,
-      consumerReservationCnt: 38,
-      competitorPrice: [
-        {
-          competitor: "쿠팡",
-          price: 16400,
-        },
-        {
-          competitor: "SSG",
-          price: 16400,
-        },
-        {
-          competitor: "네이버",
-          price: 16400,
-        },
-      ],
-      changePrice: [
-        { price: 16400, createAt: "2022-08-7T13:00:00.000+00:00" },
-        { price: 16400, createAt: "2022-08-8T13:00:00.000+00:00" },
-        { price: 16400, createAt: "2022-08-9T13:00:00.000+00:00" },
-        { price: 16100, createAt: "2022-08-10T13:00:00.000+00:00" },
-        { price: 16200, createAt: "2022-08-11T13:00:00.000+00:00" },
-        { price: 16400, createAt: "2022-08-12T13:00:00.000+00:00" },
-        { price: 16500, createAt: "2022-08-13T13:00:00.000+00:00" },
-      ],
-    }));
   }, []);
 
   return (

@@ -38,10 +38,10 @@ const Wrapper = styled.div`
     .price {
       margin-left: 20px;
       align-self: center;
-      font-size: 14px;
+      font-size: 2vh;
     }
     .date {
-      font-size: 12px;
+      font-size: 1vh;
       margin-right: 20px;
     }
   }

@@ -12,12 +12,16 @@ const RankBox = styled.div`
 
   overflow: hidden;
   .rank__box {
+    flex: 1;
     width: 100%;
+
+    font-weight: 600;
+    font-family: ${(props) => props.theme.font};
+    font-size: 1.5vh;
     display: flex;
     height: 30px;
     align-items: center;
-
-    margin-bottom: 2px;
+    margin-bottom: 0.5vh;
     padding: 0px 10px;
 
     color: white;

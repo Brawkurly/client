@@ -20,6 +20,7 @@ const GridBox = styled.div`
     justify-content: space-evenly;
     align-items: center;
     background-color: #b8e7e1;
+    border-radius: 10px;
     padding: 0px 30px;
 
     .title {
