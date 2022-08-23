@@ -4,7 +4,7 @@ import ApexChart from "react-apexcharts";
 
 function LineChart() {
   const { changePrice } = useRecoilValue(Data);
-
+  console.log(changePrice);
   return (
     <>
       {!changePrice ? (
@@ -16,7 +16,9 @@ function LineChart() {
           series={[
             {
               name: "Price",
-              data: changePrice?.map((item) => item?.price),
+              data: changePrice?.map((item) => {
+                return item?.price;
+              }),
             },
           ]}
           options={{
@@ -24,7 +26,6 @@ function LineChart() {
               mode: "dark",
             },
             chart: {
-              height: "50px",
               toolbar: {
                 show: false,
               },
@@ -37,11 +38,15 @@ function LineChart() {
             },
             yaxis: { show: true },
             xaxis: {
-              axisBorder: { show: false },
+              axisBorder: { show: true },
               labels: { show: true },
-              axisTicks: { show: false },
+              axisTicks: { show: true },
               categories: changePrice?.map((price) => price?.createAt),
               type: "datetime",
+              tickPlacement: "on",
+            },
+            markers: {
+              size: 6,
             },
             colors: ["#6650d3"],
             fill: {

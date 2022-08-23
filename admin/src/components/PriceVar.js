@@ -104,7 +104,7 @@ const GridBox = styled.div`
   grid-template-rows: 1fr 3fr;
 `;
 
-function PriceVar({ setNowData }) {
+function PriceVar({ setData }) {
   const [nowBigIdx, setNowBigIdx] = useState(1);
   const [nowSmallIdx, setNowSmallIdx] = useState(1);
   const categories = {
@@ -130,6 +130,7 @@ function PriceVar({ setNowData }) {
   };
   // axios 추가해야하는 곳
   const changeSmallIdx = (id) => {
+    // setData(id)
     setNowSmallIdx(id);
   };
 

@@ -5,3 +5,7 @@ export const KAMIS_URL = `http://www.kamis.co.kr/service/price/xml.do?action=dai
 export const kamis = {
   dome: () => KAMIS_URL,
 };
+
+export const server = {
+  web: (type) => `http://54.180.2.69/api/product?id=${type}`,
+};
