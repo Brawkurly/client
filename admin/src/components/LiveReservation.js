@@ -4,32 +4,25 @@ import BarChart from "./BarChart";
 import Reservation from "./Reservation";
 
 const GridBox = styled.div`
+  height: 100%;
   display: grid;
-  grid-template-rows: 1fr 2fr;
-  grid-template-columns: 1fr;
-  grid-gap: 20px;
-
-  padding: 5px 10px;
+  grid-template-rows: minmax(100px, 1fr) 3fr;
+`;
+const GraphBox = styled.div`
   width: 100%;
   height: 100%;
-
-  .chartBox {
-    max-width: 400px;
-  }
 `;
 
 function LiveReservation() {
   return (
     <FlexBox>
-      <h1 style={{ paddingBottom: "15px", paddingTop: "15px" }}>
-        상품별 소비자 예약 현황
-      </h1>
+      <h1> 상품별 소비자 예약 현황</h1>
       <div className="content">
         <GridBox>
           <Reservation />
-          <div className="chartBox">
+          <GraphBox>
             <BarChart></BarChart>
-          </div>
+          </GraphBox>
         </GridBox>
       </div>
     </FlexBox>

@@ -17,8 +17,11 @@ const ButtonWrap = styled.div`
     font-family: "Pretendard-Regular";
     font-weight: 500;
     width: 100%;
-    height: 30px;
-    margin: 5px;
+    /* height: 30px; */
+    /* height: 4vh; */
+    font-size: 3vh;
+    padding: 10px 0px;
+    margin: 0px 5px 5px;
 
     display: flex;
     align-items: center;
@@ -48,7 +51,7 @@ const SmallButtonWrap = styled.div`
   flex-wrap: nowrap;
   flex-direction: row;
   overflow-x: scroll;
-  margin: 3px 0px;
+  /* margin: 3px 0px; */
 
   transition: all 0.3s ease-in-out;
   ::-webkit-scrollbar {
@@ -65,14 +68,13 @@ const SmallButtonWrap = styled.div`
 
   .SmallButton {
     display: flex;
-    padding: 0px 10px;
-    height: 20px;
-    margin: 3px 3px 8px;
+    padding: 5px 10px;
+    margin: 3px 3px 10px;
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
+    font-size: 2vh;
     color: ${(props) => props.theme.White};
     border-radius: 10px;
     background-color: ${(props) => props.theme.LightBlue};
@@ -90,10 +92,16 @@ const SmallButtonWrap = styled.div`
 `;
 
 const GraphBox = styled.div`
-  max-width: 400px;
-  flex: 1;
-  padding-top: 25px;
   width: 100%;
+  height: 100%;
+`;
+
+const GridBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3fr;
 `;
 
 function PriceVar({ setNowData }) {
@@ -129,54 +137,60 @@ function PriceVar({ setNowData }) {
     <FlexBox>
       <h1>상품별 마켓컬리 가격변동</h1>
       <div className="content">
-        <ButtonWrap>
-          <div
-            onClick={changeBigIdx}
-            id={1}
-            className={nowBigIdx === 1 ? "BigButton active" : "BigButton"}
-          >
-            감귤
-          </div>
-          <div
-            id={2}
-            onClick={changeBigIdx}
-            className={nowBigIdx === 2 ? "BigButton active" : "BigButton"}
-          >
-            고구마
-          </div>
-          <div
-            id={3}
-            onClick={changeBigIdx}
-            className={nowBigIdx === 3 ? "BigButton active" : "BigButton"}
-          >
-            쌀
-          </div>
-          <div
-            id={4}
-            onClick={changeBigIdx}
-            className={nowBigIdx === 4 ? "BigButton active" : "BigButton"}
-          >
-            김치
-          </div>
-        </ButtonWrap>
-        <SmallButtonWrap>
-          {categories[nowBigIdx].map((item) => {
-            return (
+        <GridBox>
+          <div style={{ width: "100%" }}>
+            <ButtonWrap>
               <div
-                onClick={() => changeSmallIdx(item.id)}
-                className={
-                  nowSmallIdx === item.id ? "SmallButton active" : "SmallButton"
-                }
-                key={item.id}
+                onClick={changeBigIdx}
+                id={1}
+                className={nowBigIdx === 1 ? "BigButton active" : "BigButton"}
               >
-                {item.name}
+                감귤
               </div>
-            );
-          })}
-        </SmallButtonWrap>
-        <GraphBox>
-          <LineChart></LineChart>
-        </GraphBox>
+              <div
+                id={2}
+                onClick={changeBigIdx}
+                className={nowBigIdx === 2 ? "BigButton active" : "BigButton"}
+              >
+                고구마
+              </div>
+              <div
+                id={3}
+                onClick={changeBigIdx}
+                className={nowBigIdx === 3 ? "BigButton active" : "BigButton"}
+              >
+                쌀
+              </div>
+              <div
+                id={4}
+                onClick={changeBigIdx}
+                className={nowBigIdx === 4 ? "BigButton active" : "BigButton"}
+              >
+                김치
+              </div>
+            </ButtonWrap>
+            <SmallButtonWrap>
+              {categories[nowBigIdx].map((item) => {
+                return (
+                  <div
+                    onClick={() => changeSmallIdx(item.id)}
+                    className={
+                      nowSmallIdx === item.id
+                        ? "SmallButton active"
+                        : "SmallButton"
+                    }
+                    key={item.id}
+                  >
+                    {item.name}
+                  </div>
+                );
+              })}
+            </SmallButtonWrap>
+          </div>
+          <GraphBox>
+            <LineChart></LineChart>
+          </GraphBox>
+        </GridBox>
       </div>
     </FlexBox>
   );

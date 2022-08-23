@@ -11,6 +11,7 @@ function BarChart() {
         "nowLoading"
       ) : (
         <ApexChart
+          height={"100%"}
           type="bar"
           series={[
             {
@@ -23,8 +24,8 @@ function BarChart() {
               mode: "dark",
             },
             chart: {
-              height: 200,
-              width: 200,
+              height: 100,
+              width: 100,
               toolbar: {
                 show: false,
               },

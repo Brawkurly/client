@@ -10,6 +10,8 @@ import { useRecoilState } from "recoil";
 import { Data } from "./atoms";
 import LiveReservation from "./components/LiveReservation";
 import TodaySell from "./components/TodaySell";
+import CompetitionPrice from "./components/CompetitionPrice";
+import Ranking from "./components/Ranking";
 
 function App() {
   // api 호출
@@ -35,8 +37,13 @@ function App() {
         { price: 16400, cnt: 10 },
         { price: 16300, cnt: 21 },
         { price: 16200, cnt: 17 },
+        { price: 16100, cnt: 16 },
+        { price: 16000, cnt: 12 },
       ],
       consumerPopularityPurchase: [
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
+        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
         { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
         { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
         { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
@@ -45,6 +52,11 @@ function App() {
         { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
         { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
         { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
+        { productName: "[한국의집] 배추김치 2.5kg", cnt: 80 },
+        { productName: "당도선별 서귀포 감귤 1.5kg", cnt: 100 },
+        { productName: "임금님표 이천쌀(추청) 10kg", cnt: 90 },
       ],
       totalPrice: 1784000,
       totalPrice: 1784000,
@@ -53,36 +65,15 @@ function App() {
       competitorPrice: [
         {
           competitor: "쿠팡",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
         {
           competitor: "SSG",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
         {
           competitor: "네이버",
-          prices: [
-            {
-              price: 16400,
-              createAt: "2022-08-13T15:00:00.000+00:00",
-            },
-            { price: 16300, createAt: "2022-08-13T14:00:00.000+00:00" },
-            { price: 16400, createAt: "2022-08-13T13:00:00.000+00:00" },
-          ],
+          price: 16400,
         },
       ],
       changePrice: [
@@ -111,7 +102,6 @@ function App() {
         <div className="live_reservation">
           <LiveReservation />
         </div>
-        <div className="live_hot"></div>
         <div className="pair_value">
           <PairValue />
         </div>
@@ -121,8 +111,12 @@ function App() {
         <div className="dome_price">
           <DomePrice />
         </div>
-        <div className="compet_price"></div>
-        <div className="compet_graph"></div>
+        <div className="compet_price">
+          <CompetitionPrice />
+        </div>
+        <div className="compet_graph">
+          <Ranking />
+        </div>
       </div>
     </Wrapper>
   );

@@ -11,6 +11,7 @@ function LineChart() {
         "nowLoading"
       ) : (
         <ApexChart
+          height={"100%"}
           type="line"
           series={[
             {
@@ -23,8 +24,7 @@ function LineChart() {
               mode: "dark",
             },
             chart: {
-              height: 500,
-              width: 500,
+              height: "50px",
               toolbar: {
                 show: false,
               },

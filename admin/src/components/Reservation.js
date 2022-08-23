@@ -8,8 +8,6 @@ const Wrapper = styled.div`
   width: 100%;
   flex-wrap: nowrap;
   overflow-y: scroll;
-  margin: 10px 0px;
-  padding: 10px 0px;
 
   ::-webkit-scrollbar {
     border-radius: 3px;
@@ -28,13 +26,12 @@ const Wrapper = styled.div`
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-
     font-family: "Pretendard-Regular";
     justify-content: space-between;
 
     width: 98%;
-    height: 35px;
-    margin: 5px 0px;
+    height: 30px;
+    margin: 0px 0px 4px;
     color: white;
     border-radius: 10px;
     background-color: ${(props) => props.theme.DarkBlue};
