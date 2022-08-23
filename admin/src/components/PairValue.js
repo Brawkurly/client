@@ -60,7 +60,7 @@ const GridBox = styled.div`
 
       align-items: center;
       h1 {
-        font-size: calc(100vw * 0.02);
+        font-size: calc(100vw * 0.018);
         font-weight: 700;
         word-break: unset;
       }
