@@ -34,7 +34,7 @@ const GridBox = styled.div`
 `;
 
 function TodaySell() {
-  const { totalPrice, totalSalesCnt, consumerReservationCnt } =
+  const { totalPrice, totalSalesCnt, consumerReservationCnt, dayToDay } =
     useRecoilValue(Data);
   const [price, setPrice] = useState("");
   useEffect(() => {
@@ -60,7 +60,7 @@ function TodaySell() {
         <div className="box">
           <span>전일 대비 판매 비율</span>
           <div className="highlight" style={{ color: "#67a1c8" }}>
-            {totalPrice} %
+            {dayToDay === "Infinity" ? "-" : dayToDay} %
           </div>
         </div>
         <div className="box">

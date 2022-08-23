@@ -14,7 +14,7 @@ const Wrapper = styled.div`
         2fr
       );
     grid-template-rows: repeat(12, 1fr);
-    grid-gap: 10px 10px;
+    grid-gap: 40px 10px;
 
     height: calc(100vh - 60px);
     padding: 10px 20px;
@@ -42,12 +42,17 @@ const Wrapper = styled.div`
     }
     .compet_price {
       grid-area: 5 / 3 / 8 / 4;
-      padding-top: 30px;
-      height: 260px;
     }
     .compet_graph {
       grid-area: 8 / 3 / 13 / 4;
-      padding-top: 30px;
+    }
+    @media screen and (max-width: 1600px) {
+      .compet_price {
+        grid-area: 5 / 3 / 7 / 4;
+      }
+      .compet_graph {
+        grid-area: 7 / 3 / 13 / 4;
+      }
     }
   }
 `;

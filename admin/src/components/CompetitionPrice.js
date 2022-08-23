@@ -5,58 +5,70 @@ import { FlexBox } from "../items/items";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const GridBox = styled.div`
+
+const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
-
-  width: 100%;
   height: 100%;
-  background-color: #27304d;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr;
+  grid-gap: 20px;
 
-  color: white;
-
-  .grid__lower {
-    display: grid;
-    grid-template-rows: minmax(20px, 1fr), 3fr;
-    grid-template-columns: 1fr 1fr;
-    padding: 18px;
-    width: 100%;
-    height: 100%;
-    margin-left: 20px;
-    margin-top: 10px;
-    h1 {
-      padding-bottom: 0px;
-      grid-column: 1 / 3;
-    }
-  }
-
-  .flex__column {
-    h1 {
-      font-size: 20px;
-      padding-bottom: 10px;
-    }
-  }
-
-  .comList {
-    margin-left: 14px;
+  .left__flex {
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    font-size: 14px;
-  }
+    color: white;
+    .left__title {
+      font-size: 1.8vh;
+      font-family: ${(props) => props.theme.font};
+      font-weight: 700;
+    }
+    .small__title {
+      font-size: 1vw;
+      align-self: center;
+    }
+    .left__content {
+      width: 100%;
+      padding-bottom: 2vh;
+      font-weight: 600;
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-end;
+      font-family: ${(props) => props.theme.font};
 
-  .name {
-    width: 60px;
+      .price {
+        align-self: center;
+        font-size: 4vh;
+        color: #cea16b;
+      }
+    }
   }
-
-  .img {
-    width: 3vw;
-    height: 3vw;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+  .right__slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 2px;
+    .slider__box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      color: white;
+      font-family: ${(props) => props.theme.font};
+      font-size: 3vh;
+      /* background-color: red; */
+      height: calc(1vh + 60px);
+      img {
+        width: 3vw;
+        height: 3vw;
+      }
+    }
   }
 `;
 
@@ -70,7 +82,7 @@ function CompetitionPrice() {
   const { competitorPrice } = useRecoilValue(Data);
   const lowCompetition = useRecoilValue(lowCom);
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     cssEase: "linear",
     speed: 500,
@@ -85,75 +97,41 @@ function CompetitionPrice() {
     <FlexBox>
       <h1>경쟁업체 판매가</h1>
       <div className="content">
-        <GridBox>
-          <div className="grid__lower">
-            <h1>현재 최저가</h1>
-            <div
-              className="img"
-              style={{
-                backgroundImage: `url('/logo/${lowCompetition?.name}.png')`,
-              }}
-            ></div>
-            <div className="flex__column">
-              <h1>{lowCompetition?.name}</h1>
-              <p>
+        <Wrapper>
+          <div className="left__flex">
+            <div className="left__title">경쟁업체 최저가</div>
+            <div className="left__content">
+              <div className="small__title">{lowCompetition?.name}</div>
+              <div className="price">
                 {(lowCompetition?.price)
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 원
-              </p>
+              </div>
             </div>
           </div>
-          <StyledSlider {...settings}>
-            {competitorPrice?.map((data, idx) => {
-              return (
-                <div
-                  key={idx}
-                  style={{ height: "200px", paddingLeft: "100px" }}
-                  className="img__text"
-                >
-                  <div
-                    className="name"
-                    style={{
-                      display: "flex",
-                      fontSize: "20px",
-                      height: "100px",
-                      width: "90%",
-                      marginTop: "10px",
-                      marginLeft: "30px",
-                      alignItems: "center",
-                      paddingLeft: "40px",
-                    }}
-                  >
-                    <img
-                      src={`/logo/${data.competitor}.png`}
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        marginRight: "20px",
-                      }}
-                    />
-                    {data.competitor}
+
+          <div className="right__slider">
+            <StyledSlider {...settings}>
+              {competitorPrice?.map((data, idx) => {
+                return (
+                  <div key={idx}>
+                    <div className="slider__box">
+                      <img src={`/logo/${data?.competitor}.png`} />
+                      <div className="slider__name">{data.competitor}</div>
+                      <div className="price">
+                        {data.price
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        원
+                      </div>
+                    </div>
                   </div>
-                  <div
-                    className="price"
-                    style={{
-                      width: "174px",
-                      justifyContent: "center",
-                      display: "flex",
-                      paddingLeft: "100px",
-                    }}
-                  >
-                    {data.price
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                    원
-                  </div>
-                </div>
-              );
-            })}
-          </StyledSlider>
-        </GridBox>
+                );
+              })}
+            </StyledSlider>
+          </div>
+        </Wrapper>
       </div>
     </FlexBox>
   );
