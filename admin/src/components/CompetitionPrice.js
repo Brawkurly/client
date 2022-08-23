@@ -23,7 +23,8 @@ const GridBox = styled.div`
     padding: 18px;
     width: 100%;
     height: 100%;
-
+    margin-left: 20px;
+    margin-top: 10px;
     h1 {
       padding-bottom: 0px;
       grid-column: 1 / 3;
@@ -62,7 +63,6 @@ const GridBox = styled.div`
 const StyledSlider = styled(Slider)`
   .slick-list div {
     outline: none;
-    backgroundcolor: "red";
   }
 `;
 
@@ -96,7 +96,12 @@ function CompetitionPrice() {
             ></div>
             <div className="flex__column">
               <h1>{lowCompetition?.name}</h1>
-              <p>{lowCompetition?.price}원</p>
+              <p>
+                {(lowCompetition?.price)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
+              </p>
             </div>
           </div>
           <StyledSlider {...settings}>
@@ -104,7 +109,7 @@ function CompetitionPrice() {
               return (
                 <div
                   key={idx}
-                  style={{ height: "200px" }}
+                  style={{ height: "200px", paddingLeft: "100px" }}
                   className="img__text"
                 >
                   <div
@@ -113,10 +118,11 @@ function CompetitionPrice() {
                       display: "flex",
                       fontSize: "20px",
                       height: "100px",
-                      width: "100%",
+                      width: "90%",
                       marginTop: "10px",
                       marginLeft: "30px",
                       alignItems: "center",
+                      paddingLeft: "40px",
                     }}
                   >
                     <img
@@ -129,36 +135,24 @@ function CompetitionPrice() {
                     />
                     {data.competitor}
                   </div>
-                  <div className="price">{data.price}원</div>
+                  <div
+                    className="price"
+                    style={{
+                      width: "174px",
+                      justifyContent: "center",
+                      display: "flex",
+                      paddingLeft: "100px",
+                    }}
+                  >
+                    {data.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    원
+                  </div>
                 </div>
               );
             })}
           </StyledSlider>
-
-          {/* <div className="grid__lower">
-            <h1>현재 최저가</h1>
-            <div
-              className="img"
-              style={{
-                backgroundImage: `url('/logo/${lowCompetition?.name}.png')`,
-              }}
-            ></div>
-            <div className="flex__column">
-              <h1>{lowCompetition?.name}</h1>
-              <p>{lowCompetition?.price}</p>
-            </div>
-          </div>
-
-          <div className="comList">
-            {competitorPrice?.map((data, idx) => {
-              return (
-                <div key={idx} className="img__text">
-                  <div className="name">{data.competitor}</div>
-                  <div className="price">{data.price}</div>
-                </div>
-              );
-            })}
-          </div> */}
         </GridBox>
       </div>
     </FlexBox>
