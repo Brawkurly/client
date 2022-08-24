@@ -1,8 +1,8 @@
-import Axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { kamis, KAMIS_URL, API_KEY } from "../api/drf";
+import { API_KEY } from "../api/drf";
 import { FlexBox } from "../items/items";
 
 const Box = styled.div`
@@ -95,17 +95,13 @@ function DomePrice() {
   };
 
   let now = today();
-  const axiosInstance = Axios.create();
 
   useEffect(() => {
     const now = today();
-
-    axiosInstance
-      .get(
-        "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList&p_cert_key=4dbe24c1-28fe-4c88-aa03-9fe7c8f36a98&p_cert_id=heo3793&p_returntype=json"
-      )
+    axios
+      .get("http://54.180.2.69/api/kamis")
       .then(({ data }) => {
-        data.price.map((item) => {
+        data?.price.map((item) => {
           const temp = {
             type: item.category_code / 100,
             name: item.item_name,
@@ -127,20 +123,6 @@ function DomePrice() {
         console.log(err);
       });
   }, []);
-  useEffect(() => {
-    axiosInstance.get(kamis.dome(), {
-      params: {
-        p_cert_key: API_KEY,
-        p_cert_id: "heo3793",
-        p_country_code: 1101,
-        p_returntype: "json",
-        p_item_category_code: 100,
-        p_product_cls_code: "02",
-        p_regday: now,
-        p_convert_kg_yn: "N",
-      },
-    });
-  });
   return (
     <FlexBox>
       <h1>상품별 도매가</h1>

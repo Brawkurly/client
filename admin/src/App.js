@@ -1,4 +1,4 @@
-import { kamis, server } from "./api/drf";
+import { server } from "./api/drf";
 
 import { Title } from "./items/items";
 import Wrapper from "./appStyle";
