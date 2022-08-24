@@ -4,7 +4,7 @@ import ApexChart from "react-apexcharts";
 
 function LineChart() {
   const { changePrice } = useRecoilValue(Data);
-  console.log(changePrice);
+
   return (
     <>
       {!changePrice ? (

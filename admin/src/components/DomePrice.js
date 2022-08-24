@@ -100,32 +100,32 @@ function DomePrice() {
   useEffect(() => {
     const now = today();
 
-    axiosInstance.get(kamis.dome(), {}).then(({ data }) => {
-      console.log(data);
-      data.price.map((item) => {
-        console.log(
-          (parseInt(item.dpr1.replace(/,/g, "")) -
-            parseInt(item.dpr2.replace(/,/g, ""))) /
-            parseInt(item.dpr2.replace(/,/g, ""))
-        );
+    axiosInstance
+      .get(
+        "http://www.kamis.co.kr/service/price/xml.do?action=dailySalesList&p_cert_key=4dbe24c1-28fe-4c88-aa03-9fe7c8f36a98&p_cert_id=heo3793&p_returntype=json"
+      )
+      .then(({ data }) => {
+        data.price.map((item) => {
+          const temp = {
+            type: item.category_code / 100,
+            name: item.item_name,
+            dan: item.unit,
+            price: item.dpr1,
+            // priceRate:
+            //   (parseInt(item.dpr1.replace(/,/g, "")) -
+            //     parseInt(item.dpr2.replace(/,/g, ""))) /
+            //   parseInt(item.dpr2.replace(/,/g, "")),
+            beforeOneDay: item.dpr2,
+            beforeOneMonth: item.dpr3,
+            beforeOneYear: item.dpr4,
+          };
 
-        const temp = {
-          type: item.category_code / 100,
-          name: item.item_name,
-          dan: item.unit,
-          price: item.dpr1,
-          // priceRate:
-          //   (parseInt(item.dpr1.replace(/,/g, "")) -
-          //     parseInt(item.dpr2.replace(/,/g, ""))) /
-          //   parseInt(item.dpr2.replace(/,/g, "")),
-          beforeOneDay: item.dpr2,
-          beforeOneMonth: item.dpr3,
-          beforeOneYear: item.dpr4,
-        };
-
-        setDatas((val) => [...val, temp]);
+          setDatas((val) => [...val, temp]);
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    });
   }, []);
   useEffect(() => {
     axiosInstance.get(kamis.dome(), {
