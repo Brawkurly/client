@@ -6,6 +6,8 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${(props) => props.theme.DarkBlue};
+  min-width: 1280px;
+  min-height: 750px;
 
   .grid {
     display: grid;
@@ -46,7 +48,7 @@ const Wrapper = styled.div`
     .compet_graph {
       grid-area: 8 / 3 / 13 / 4;
     }
-    @media screen and (max-width: 1600px) {
+    @media screen and (min-width: 1800px) {
       .compet_price {
         grid-area: 5 / 3 / 7 / 4;
       }

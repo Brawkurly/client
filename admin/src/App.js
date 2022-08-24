@@ -20,8 +20,6 @@ function App() {
   //axios 후
   const setData = (itemId) => {
     axios.get(server.web(itemId)).then(({ data: res }) => {
-      console.log(res);
-
       setNowData((val) => ({
         ...val,
         dayToDay: res.dayToDay,

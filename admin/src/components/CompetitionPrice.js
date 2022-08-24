@@ -19,7 +19,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     color: white;
     .left__title {
-      font-size: 1.8vh;
+      font-size: 1vw;
       font-family: ${(props) => props.theme.font};
       font-weight: 700;
     }
@@ -29,7 +29,6 @@ const Wrapper = styled.div`
     }
     .left__content {
       width: 100%;
-      padding-bottom: 2vh;
       font-weight: 600;
       flex: 1;
       display: flex;
@@ -40,7 +39,7 @@ const Wrapper = styled.div`
 
       .price {
         align-self: center;
-        font-size: 4vh;
+        font-size: 2vw;
         color: #cea16b;
       }
     }
@@ -59,14 +58,16 @@ const Wrapper = styled.div`
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      height: 100%;
       color: white;
       font-family: ${(props) => props.theme.font};
-      font-size: 3vh;
+      font-size: 1.2vw;
+      margin-bottom: 5px;
       /* background-color: red; */
       height: calc(1vh + 60px);
       img {
-        width: 3vw;
-        height: 3vw;
+        width: 2vw;
+        height: 2vw;
       }
     }
   }

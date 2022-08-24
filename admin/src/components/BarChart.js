@@ -39,8 +39,11 @@ function BarChart() {
               axisBorder: { show: false },
               labels: { show: true },
               axisTicks: { show: false },
-              categories: consumerReserveCnt?.map((price) => price?.price),
-              type: "number",
+              categories: consumerReserveCnt
+                ?.map((price) => price?.price)
+                .slice(0, 10),
+
+              type: "category",
             },
             yaxis: {
               labels: {
