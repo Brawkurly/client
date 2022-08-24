@@ -93,7 +93,11 @@ function CompetitionPrice() {
     vertical: true,
     arrows: false,
   };
-
+  const Image = {
+    네이버: 1,
+    쿠팡: 2,
+    SSG: 3,
+  };
   return (
     <FlexBox>
       <h1>경쟁업체 판매가</h1>
@@ -115,10 +119,12 @@ function CompetitionPrice() {
           <div className="right__slider">
             <StyledSlider {...settings}>
               {competitorPrice?.map((data, idx) => {
+                const imageNum = Image[data.competitor];
+         
                 return (
                   <div key={idx}>
                     <div className="slider__box">
-                      <img src={`/logo/${data?.competitor}.png`} />
+                      <img src={`/logo/${imageNum}.png`} />
                       <div className="slider__name">{data.competitor}</div>
                       <div className="price">
                         {data.price
